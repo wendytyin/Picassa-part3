@@ -11,7 +11,7 @@ import model.util.ColorCombinations;
 public class MinusExpression extends ParenExpression {
 	
 	private static final String myCommand="minus";
-    private static final String commandMatching="minus";
+    private static final String commandMatching="minus|\\-";
     private static final Pattern COMMAND_REGEX = Pattern.compile(commandMatching);
 
 	// for the factory to look at

@@ -16,7 +16,8 @@ public class Model
     public static final int NUM_FRAMES = 50;
 
     private double myCurrentTime = 0;
-
+    private static double evalY;
+    private static double evalX;
 
     /**
      * Advance to the next frame in the animation.
@@ -47,10 +48,10 @@ public class Model
         // evaluate at each pixel
         for (int imageY = 0; imageY < size.height; imageY++)
         {
-            double evalY = imageToDomainScale(imageY, size.height);
+            evalY = imageToDomainScale(imageY, size.height);
             for (int imageX = 0; imageX < size.width; imageX++)
             {
-                double evalX = imageToDomainScale(imageX, size.width);
+                evalX = imageToDomainScale(imageX, size.width);
                 result.setColor(imageX, imageY,
                                 toEval.evaluate().toJavaColor());
 
@@ -68,5 +69,14 @@ public class Model
     {
         double range = DOMAIN_MAX - DOMAIN_MIN;
         return ((double)value / bounds) * range + DOMAIN_MIN;
+    }
+
+
+    public static double getXCoordinate() {
+        return evalX;
+    }
+
+    public static double getYCoordinate() {
+        return evalY;
     }
 }

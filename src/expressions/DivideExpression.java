@@ -11,7 +11,7 @@ import model.util.ColorCombinations;
 public class DivideExpression extends ParenExpression {
 	
 	private static final String myCommand="div";
-    private static final String commandMatching="div";
+    private static final String commandMatching="div|\\/";
     private static final Pattern COMMAND_REGEX = Pattern.compile(commandMatching);
 
 	// for the factory to look at

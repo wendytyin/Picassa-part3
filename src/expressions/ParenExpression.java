@@ -65,7 +65,6 @@ public abstract class ParenExpression extends Expression {
     public boolean isThisCommand(String myInput, int myCurrentPosition) {
         if (isParenExpression(myInput, myCurrentPosition)) {
             String commandName = findCommand(myInput, myCurrentPosition);
-            System.out.println("matching " + commandName);
             return commandIsThisExpression(commandName);
         }
         return false;

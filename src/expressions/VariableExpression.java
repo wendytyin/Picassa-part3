@@ -13,8 +13,6 @@ import model.RGBColor;
  * Now also contains instructions for x and y (the axes)
  * 
  * @author Wendy
- * 
- * TODO MAKE EQUALS MORE SAFE
  */
 public class VariableExpression extends TerminalExpression {
 

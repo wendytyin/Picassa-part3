@@ -11,7 +11,7 @@ import model.util.ColorCombinations;
 public class ExponentExpression extends ParenExpression {
 	
 	private static final String myCommand="exp";
-    private static final String commandMatching="exp";
+    private static final String commandMatching="exp|\\^";
     private static final Pattern COMMAND_REGEX = Pattern.compile(commandMatching);
 
 	// for the factory to look at

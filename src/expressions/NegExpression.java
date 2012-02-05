@@ -12,7 +12,7 @@ import model.util.ColorCombinations;
 public class NegExpression extends ParenExpression {
 	
 	private static final String myCommand="neg";
-    private static final String commandMatching="neg";
+    private static final String commandMatching="neg|\\!";
     private static final Pattern COMMAND_REGEX = Pattern.compile(commandMatching);
 
 	// for the factory to look at
