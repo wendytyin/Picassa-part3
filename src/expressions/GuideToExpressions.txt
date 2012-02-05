@@ -1,0 +1,16 @@
+A Guide to Expressions, the package, the royal kingdom of OOP.
+
+Expression.java is the super-est class. Respect your ancestor. 
+
+ParenExpression and TerminalExpression are its two progeny. One is rather chubbier than the other, 
+as he/she/it has to keep track of his/her/its many mini-me's, and the stress of doing so puts on the 
+pounds. The other is rather narcissistic and a harbinger of the apocalypse.
+
+Each of the mini-me's contain an identification card, also known as "myCommand" for use 
+in the identification and construction factories of mini-me's (except for Number...Number is a little 
+bit "special" and needs extra help), a parsing unit for consuming strings, 
+and an evaluation unit, for when the mini-me's are fully grown and ready for harvesting. Additionally 
+they have the option to pull on their bigger-me's coattails to get their messages across.
+
+Finally, the royal ExpressionFactory. It is staffed by rather dumb but loyal servants, unquestioningly 
+pulling levers and passing messages.  
