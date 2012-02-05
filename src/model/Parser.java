@@ -33,7 +33,7 @@ public class Parser {
         Operations.add(NumberExpression.getFactory());
         Operations.add(VariableExpression.getFactory()); // also covers the axes
                                                          // if no value assigned
-                                                         // to x/y
+                                                         // to x/y/t
 
         // the parenthetical expressions
         // part one
@@ -65,6 +65,13 @@ public class Parser {
         Operations.add(CosExpression.getFactory());
         Operations.add(TanExpression.getFactory());
         Operations.add(ATanExpression.getFactory());
+        
+        //part three
+        Operations.add(AvgExpression.getFactory());
+        Operations.add(MaxExpression.getFactory());
+        Operations.add(MinExpression.getFactory());
+        //sum and product map to plus, mul
+        Operations.add(IfExpression.getFactory());
 
     }
 

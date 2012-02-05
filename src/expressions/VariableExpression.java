@@ -79,6 +79,9 @@ public class VariableExpression extends TerminalExpression {
         if (myCommand.equals("y")){
             return new RGBColor(Model.getYCoordinate());
         }
+        if (myCommand.equals("t")){
+            return new RGBColor(Model.getTime());
+        }
         throw new ParserException("No value has been assigned to "
                 + myCommand);
     }
