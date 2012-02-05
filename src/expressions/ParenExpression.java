@@ -31,6 +31,8 @@ public abstract class ParenExpression extends Expression {
                 .substring(myCurrentPosition));
         if (overloadMatcher.lookingAt()) {
             isOperator = true;
+        } else {
+            isOperator = false;
         }
         return expMatcher.lookingAt() || overloadMatcher.lookingAt();
     }
@@ -90,8 +92,8 @@ public abstract class ParenExpression extends Expression {
     }
 
     /**
-     * Update the expression tree so it knows who its children are.
-     * Perhaps not the safest thing to have public, but I don't know how else to do it
+     * Update the expression tree so it knows who its children are. Perhaps not
+     * the safest thing to have public, but I don't know how else to do it
      */
     @Override
     public void updateSubExpressions(List<Expression> subExpressions) {
