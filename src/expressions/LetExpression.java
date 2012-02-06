@@ -46,12 +46,6 @@ public class LetExpression extends ParenExpression {
     @Override
     public RGBColor evaluate() {
         List<Expression> mySubExpressions = getSubExpressions();
-
-        if (mySubExpressions.isEmpty()) {
-            throw new ParserException(
-                    "No expressions, what are you trying to do with "
-                            + myCommand + "?");
-        }
         return mySubExpressions.get(0).evaluate();
     }
 
