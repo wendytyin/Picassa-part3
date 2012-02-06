@@ -20,20 +20,15 @@ public class LetExpression extends ParenExpression {
     private static final Pattern COMMAND_REGEX = Pattern
             .compile(commandMatching);
 
-    private Expression myVariable;
+    private Expression myVariable; //perhaps not that safe, would allow non-variables to be set to other values
     private Expression myVariableValue;
 
     // for the factory to look at
     private LetExpression() {
     }
-
-    private LetExpression(Expression variable) {
-        myVariable = (VariableExpression) variable;
-    }
-
-    @Override
+    
     public Expression getNewExpression() {
-        return new LetExpression(myVariable);
+        return new LetExpression();
     }
     public static ExpressionFactory getFactory() {
         return new ExpressionFactory(new LetExpression());
@@ -44,37 +39,27 @@ public class LetExpression extends ParenExpression {
         super.updateSubExpressions(subExpressions);
         //do the last bit of parsing
         List<Expression> mySubExpressions = getSubExpressions();
-        getVariable(mySubExpressions);
-        getVariableValue(mySubExpressions);
-
-        if (mySubExpressions.isEmpty()) {
-            throw new ParserException(
-                    "No expressions, what are you trying to do with "
-                            + myCommand + "?");
-        }
+        getVariables(mySubExpressions);
         replaceVariableWithValue(mySubExpressions);
     }
     
     @Override
     public RGBColor evaluate() {
         List<Expression> mySubExpressions = getSubExpressions();
-        
+
+        if (mySubExpressions.isEmpty()) {
+            throw new ParserException(
+                    "No expressions, what are you trying to do with "
+                            + myCommand + "?");
+        }
         return mySubExpressions.get(0).evaluate();
     }
 
-    private void getVariable(List<Expression> mySubExpressions) {
-        if (mySubExpressions.isEmpty()) {
-            throw new ParserException("No value has been assigned to "
-                    + myVariable.toString());
+    private void getVariables(List<Expression> mySubExpressions) {
+        if (mySubExpressions.size()<3) {
+            throw new ParserException("Not enough expressions for"+myCommand);
         }
         myVariable = mySubExpressions.remove(0);
-    }
-    
-    private void getVariableValue(List<Expression> mySubExpressions) {
-        if (mySubExpressions.isEmpty()) {
-            throw new ParserException("No value has been assigned to "
-                    + myVariable.toString());
-        }
         myVariableValue = mySubExpressions.remove(0);
     }
 

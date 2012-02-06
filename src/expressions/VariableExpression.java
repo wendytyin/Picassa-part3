@@ -41,13 +41,6 @@ public class VariableExpression extends TerminalExpression {
         return new ExpressionFactory(new VariableExpression());
     }
     
-    /**
-//     * compares the myCommands. Useful in LetExpression parsing
-//     */
-//    public boolean hasSameVarAs(Expression other) {
-//        return myCommand.equals(other.getMyCommand());
-//    }
-
     @Override
     public boolean isThisCommand(String command, int currentPosition) {
         Matcher varMatcher = VAR_REGEX.matcher(command
