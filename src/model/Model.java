@@ -14,7 +14,7 @@ public class Model {
     public static final double DOMAIN_MAX = 1;
     public static final int NUM_FRAMES = 50;
 
-    private static double myCurrentTime = 0;
+    private static double myCurrentTime = -1;
     private static double evalY;
     private static double evalX;
 
@@ -22,14 +22,14 @@ public class Model {
      * Advance to the next frame in the animation.
      */
     public void reset() {
-        myCurrentTime = 0;
+        myCurrentTime = -1;
     }
 
     /**
      * Advance to the next frame in the animation.
      */
     public void nextFrame() {
-        myCurrentTime += 1.0 / NUM_FRAMES;
+        myCurrentTime += 2.0 / NUM_FRAMES;
     }
 
     /**
