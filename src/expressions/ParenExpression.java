@@ -9,7 +9,7 @@ public abstract class ParenExpression extends Expression {
     // expression begins with a left paren followed by the command name,
     // which is a sequence of alphabetic characters
     private static final Pattern EXPRESSION_BEGIN_REGEX = Pattern
-            .compile("\\(([a-zA-Z\\p{Punct}]+)");
+            .compile("\\(([+\\-*/^%!]|[a-zA-Z]+)");
 
     private List<Expression> mySubExpressions;
 
