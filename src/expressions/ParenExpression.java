@@ -6,13 +6,10 @@ import java.util.regex.Pattern;
 
 public abstract class ParenExpression extends Expression {
 
-    private static boolean isOperator = false;
     // expression begins with a left paren followed by the command name,
     // which is a sequence of alphabetic characters
     private static final Pattern EXPRESSION_BEGIN_REGEX = Pattern
-            .compile("\\(([a-zA-Z]+)");
-    private static final Pattern OVERLOADED_OPERATOR_REGEX = Pattern
-            .compile("\\((\\p{Punct}+?)");
+            .compile("\\(([a-zA-Z\\p{Punct}]+)");
 
     private List<Expression> mySubExpressions;
 
@@ -27,14 +24,7 @@ public abstract class ParenExpression extends Expression {
             int myCurrentPosition) {
         Matcher expMatcher = EXPRESSION_BEGIN_REGEX.matcher(myInput
                 .substring(myCurrentPosition));
-        Matcher overloadMatcher = OVERLOADED_OPERATOR_REGEX.matcher(myInput
-                .substring(myCurrentPosition));
-        if (overloadMatcher.lookingAt()) {
-            isOperator = true;
-        } else {
-            isOperator = false;
-        }
-        return expMatcher.lookingAt() || overloadMatcher.lookingAt();
+        return expMatcher.lookingAt();
     }
 
     /**
@@ -46,12 +36,7 @@ public abstract class ParenExpression extends Expression {
      * @return the first word of the parenthetical expression
      */
     private static String findCommand(String myInput, int myCurrentPosition) {
-        Matcher expMatcher;
-        if (isOperator) {
-            expMatcher = OVERLOADED_OPERATOR_REGEX.matcher(myInput);
-        } else {
-            expMatcher = EXPRESSION_BEGIN_REGEX.matcher(myInput);
-        }
+        Matcher expMatcher = EXPRESSION_BEGIN_REGEX.matcher(myInput);
         expMatcher.find(myCurrentPosition);
         return expMatcher.group(1);
     }
@@ -80,13 +65,7 @@ public abstract class ParenExpression extends Expression {
      */
     @Override
     public void parseCommand(String myInput, int myCurrentPosition) {
-        Matcher expMatcher;
-        if (isOperator) {
-            expMatcher = OVERLOADED_OPERATOR_REGEX.matcher(myInput);
-        } else {
-            expMatcher = EXPRESSION_BEGIN_REGEX.matcher(myInput);
-        }
-
+        Matcher expMatcher = EXPRESSION_BEGIN_REGEX.matcher(myInput);
         expMatcher.find(myCurrentPosition);
         changePosition(expMatcher.end());
     }
